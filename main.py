@@ -12,7 +12,7 @@ def index():
     if not current_user.is_authenticated:
         return render_template('index.html')
 
-    new = Entry.query.filter(Entry.user!=current_user.name).order_by(Entry.id).all()[::-1]
+    new = Entry.query.filter(Entry.user!=current_user.name).filter_by(public=True).order_by(Entry.id).all()[::-1]
     new = new[:5]
     recent = Entry.query.filter_by(user=current_user.name).order_by(Entry.id).all()[::-1]
     recent = recent[:5]
@@ -22,7 +22,7 @@ def index():
     for i in entries:
         for j in i.tags.split():
             tags.add(j)
-    entries = Entry.query.filter(Entry.user!=current_user.name).order_by(Entry.id).all()[::-1]
+    entries = Entry.query.filter(Entry.user!=current_user.name).filter_by(public=True).order_by(Entry.id).all()[::-1]
     suggested = []
     for i in entries:
         for j in i.tags.split():
@@ -37,7 +37,7 @@ def index():
 @main.route('/new-activity/')
 @login_required
 def new():
-    new = Entry.query.filter(Entry.user!=current_user.name).order_by(Entry.id).all()[::-1]
+    new = Entry.query.filter(Entry.user!=current_user.name).filter_by(public=True).order_by(Entry.id).all()[::-1]
     return render_template('new.html', new=new)
 
 
@@ -53,7 +53,7 @@ def your():
 def suggested():
     tags = set()
     tags.add(current_user.theme.lower())
-    entries = Entry.query.filter_by(user=current_user.name).order_by(Entry.id).all()[::-1]
+    entries = Entry.query.filter_by(user=current_user.name).filter_by(public=True).order_by(Entry.id).all()[::-1]
     for i in entries:
         for j in i.tags.split():
             tags.add(j)
@@ -77,12 +77,13 @@ def new_entry_post():
     entry = request.form.get('entry')
     tags = request.form.get('tags').lower()
     date = datetime.datetime.strptime(request.form.get('date'), '%Y-%m-%d')
+    public = True if request.form.get('public') else False
     entries = Entry.query.order_by(Entry.id).all()
     if len(entries) == 0:
         id = 1
     else:
         id = entries[-1].id+1
-    new_entry = Entry(id=id, user=current_user.name, date=date, entry=entry, tags=tags)
+    new_entry = Entry(id=id, user=current_user.name, date=date, entry=entry, tags=tags, public=public)
     db.session.add(new_entry)
     db.session.commit()
     return redirect(url_for('main.your'))

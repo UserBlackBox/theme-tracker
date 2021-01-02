@@ -8,6 +8,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(100))
     name = db.Column(db.String(1000))
     theme = db.Column(db.String(1000))
+    following = db.Column(db.Text())
 
 
 class Entry(db.Model):
@@ -16,3 +17,4 @@ class Entry(db.Model):
     date = db.Column(db.DateTime)
     entry = db.Column(db.String(1000))
     tags = db.Column(db.String(1000))
+    public = db.Column(db.Boolean())
