@@ -139,3 +139,7 @@ li {list-style: none; }
     margin-left: 1px;
     margin-right: 1px;
 }
+
+.btn-sm {
+    white-space: nowrap;
+}
