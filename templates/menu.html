@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <meta charset = "utf-8"/>
+    <title> Home </title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+    <div class="container">
+        <div class="nav-wrapper">
+            <div class="left-side">
+                <div class="nav-link-wrapper active-nav-link">
+                    <a href="menu.html">Home</a>
+                </div>
+                <div class="nav-link-wrapper">
+                    <a href="new.html">New Activity</a>
+                </div>
+                <div class="nav-link-wrapper">
+                    <a href="entries.html">Your Entries</a>
+                </div>
+                <div class="nav-link-wrapper">
+                    <a href="activities.html">Your Suggested Activities</a>
+                </div>
+            </div>
+            <div class="right-side">
+                Logged in as USER
+                <div class="name">
+                    <a href="about.html" class = "btn-sm btn-success btn-lg" role="button">log out</a>
+                </div>
+            </div>
+        </div>
+        <div class="content-wrapper">
+            <div class = "welcome-page">
+                <p> <h2> Here is an overview of your account. </h2> </p>
+                <br>
+            </div>
+            <div class="content-wrapper">
+                <div class = "three-column-wrapper">
+                    <div class  = "left-column">
+                        <p><h1>New Activities</h1></p>
+                        <br>
+                        <p><h3> User &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Details </h3></p>
+                        <br>
+                        <p><h4> user and details are TBD </h4> </p>
+                        <br>
+                    </div>
+                    <div class  = "mid-column">
+                        <p><h1>Your Recent Entries</h1></p>
+                        <br>
+                        <p><h3> Date &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Details </h3></p>
+                        <br>
+                        <p><h4> date and details are TBD </h4> </p>
+                        <br>
+                    </div>
+                    <div class  = "right-column">
+                        <p><h1>Suggested Activities</h1></p>
+                        <br>
+                        <p><h3> Date &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Details </h3></p>
+                        <br>
+                        <p><h4> date and details are TBD </h4> </p>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class = "page-footer">
+        This project was created for <a href="https://newyearnewhack.devpost.com/">New Year New Hack</a>.
+        <div class = "icons">
+            <a href="https://github.com/UserBlackBox/theme-tracker" title="Github">
+                <div class = "image">
+                    <img src="{{ url_for('static', filename='github.png') }}" class="current-image" alt="Github" height="32">
+                </div>
+            </a>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

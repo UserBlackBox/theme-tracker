@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <meta charset = "utf-8"/>
+    <title> Home </title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-wrapper">
+            <div class="left-side">
+                <h1>Title Here </h1>
+            </div>
+            <div class="right-side">
+                Not Logged In.
+                <div class="name" style="width: 100%">
+                    <a href="/login" class = "btn-sm btn-success btn-lg" role="button">log in</a>
+                    <a href="/signup" class = "btn-sm btn-success btn-lg" role="button">sign up</a>
+                </div>
+            </div>
+        </div>
+        <div class="content-wrapper">
+            <div class = "welcome-page">
+                <p><h2>This site was made for the New Year New Hack 2021 Hackathon by Aidan Ang,
+                    Quentin Fan-Chiang and Alan Li . We designed it to help address a pressing issue
+                     that affects countless millions of people around the world: breaking their New Year's resolutions.
+                      We hope that you can use this site to better yourself and stick to your resolutions
+                      (or themes)! </h2> </p>
+            </div>
+        </div>
+    </div>
+    <footer class = "page-footer">
+        <div class = "icons">
+            <a href="https://github.com/UserBlackBox/theme-tracker" title="Github">
+                <div class = "image">
+                    <img src="{{ url_for('static', filename='github.png') }}" class="current-image" alt="Github" height="32">
+                </div>
+            </a>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
