@@ -12,9 +12,10 @@ body {
     text-align: center;
 }
 .container {
-    display: grid;
+    display: block;
     grid-template-columns: 1fr;
     vertical-align: top;
+    min-height: calc(100vh - 102px);
 }
 
 .nav-wrapper {
@@ -76,6 +77,7 @@ body {
     text-align: center;
     position: relative;
     width: 100%;
+    bottom: 20px;
 }
 
 pre code {

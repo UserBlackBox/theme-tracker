@@ -18,16 +18,16 @@
         <div class="nav-wrapper">
             <div class="left-side">
                 <div class="nav-link-wrapper active-nav-link">
-                    <a href="menu.html">Home</a>
+                    <a href="{{ url_for('main.index') }}">Home</a>
                 </div>
                 <div class="nav-link-wrapper">
-                    <a href="new.html">New Activity</a>
+                    <a href="{{ url_for('main.new') }}">New Activity</a>
                 </div>
                 <div class="nav-link-wrapper">
-                    <a href="entries.html">Your Entries</a>
+                    <a href="{{ url_for('main.your') }}">Your Entries</a>
                 </div>
                 <div class="nav-link-wrapper">
-                    <a href="activities.html">Your Suggested Activities</a>
+                    <a href="{{ url_for('main.suggested') }}">Your Suggested Activities</a>
                 </div>
             </div>
             <div class="right-side">
@@ -39,7 +39,7 @@
         </div>
         <div class="content-wrapper">
             <div class = "welcome-page">
-                <p> <h2> Here is an overview of your account. </h2> </p>
+                <p><h2>Here is an overview of your account.<span style="float: right">Your theme is {{ current_user.theme }}</span></h2></p>
                 <br>
             </div>
             <div class="content-wrapper">
@@ -48,32 +48,34 @@
                         <p><h1>New Activities</h1></p>
                         <br>
                         <p><h3> User &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Details </h3></p>
-                        <br>
-                        <p><h4> user and details are TBD </h4> </p>
-                        <br>
+                        {% if not new|length %}
+                            <br>
+                            <p><h4>No new activities yet...</h4></p>
+                        {% endif %}
                     </div>
                     <div class  = "mid-column">
                         <p><h1>Your Recent Entries</h1></p>
                         <br>
                         <p><h3> Date &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Details </h3></p>
-                        <br>
-                        <p><h4> date and details are TBD </h4> </p>
-                        <br>
+                        {% if not recent|length %}
+                            <br>
+                            <p><h4>You have no recent entries yet...</h4></p>
+                        {% endif %}
                     </div>
                     <div class  = "right-column">
                         <p><h1>Suggested Activities</h1></p>
                         <br>
                         <p><h3> Date &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Details </h3></p>
-                        <br>
-                        <p><h4> date and details are TBD </h4> </p>
-                        <br>
+                        {% if not suggested|length %}
+                            <br>
+                            <p><h4>No suggested activities yet...</h4></p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <footer class = "page-footer">
-        This project was created for <a href="https://newyearnewhack.devpost.com/">New Year New Hack</a>.
         <div class = "icons">
             <a href="https://github.com/UserBlackBox/theme-tracker" title="Github">
                 <div class = "image">
@@ -81,6 +83,7 @@
                 </div>
             </a>
         </div>
+        This project was created for <a href="https://newyearnewhack.devpost.com/">New Year New Hack</a>.
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
