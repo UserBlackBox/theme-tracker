@@ -34,14 +34,14 @@
             <div class="right-side">
                 Logged in as {{ current_user.name }}
                 <div class="name">
-                    <a href="/logout" class = "btn-sm btn-success btn-lg" role="button">log out</a>
+                    <a href="/logout" class = "btn-sm btn-success btn-lg" role="button"><i class="fas fa-sign-out-alt"></i> log out</a>
                 </div>
             </div>
         </div>
         <div class="content-wrapper" style="height: 100%;">
             <div class = "welcome-page">
                 <p><h2>Here is an overview of your account.<span style="float: right">Your theme is {{ current_user.theme }}</span></h2></p>
-                <p><a href="{{ url_for('main.new_entry') }}">Make new entry</a></p>
+                <p><i class="fas fa-plus-square"></i> <a href="{{ url_for('main.new_entry') }}">Make new entry</a></p>
                 <br>
             </div>
             <div class="content-wrapper">
