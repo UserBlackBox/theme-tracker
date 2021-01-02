@@ -71,6 +71,7 @@ body {
 }
 
 .page-footer{
+    padding-top: 50px;
     text-align: center;
     position: relative;
 }
@@ -83,3 +84,13 @@ pre code {
     padding: 10px;
 }
 li {list-style: none; }
+
+.notification {
+    background: #bf000d;
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+    margin: 2px;
+    padding: 5px;
+    width: 100%;
+}
