@@ -36,8 +36,12 @@ def signup_post():
         flash('Passwords do not match')
         return redirect(url_for('auth.signup'))
 
+    if len(password)<8:
+        flash('Password is too short')
+        return redirect(url_for('auth.signup'))
+
     if User.query.filter_by(name=username).first():
-        flash('User with that username already exists')
+        flash('User with that username already exists, try logging in <a href="{0}">here</a>'.format(url_for('auth.login')))
         return redirect(url_for('auth.signup'))
 
     new_user = User(name=username, password=generate_password_hash(password, method='sha256'), theme=theme)
