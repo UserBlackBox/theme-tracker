@@ -9,6 +9,7 @@
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <script src="https://kit.fontawesome.com/f5ffdce5b9.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 </head>
@@ -40,6 +41,7 @@
         <div class="content-wrapper" style="height: 100%;">
             <div class = "welcome-page">
                 <p><h2>Here is an overview of your account.<span style="float: right">Your theme is {{ current_user.theme }}</span></h2></p>
+                <p><a href="{{ url_for('main.new_entry') }}">Make new entry</a></p>
                 <br>
             </div>
             <div class="content-wrapper">
