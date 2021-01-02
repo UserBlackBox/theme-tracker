@@ -2,13 +2,13 @@ from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required, login_required, current_user
 from . import db
-from .models import User, Entry
+from .models import User
 
 auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=['GET'])
 def login():
-    return 'Login'
+    return render_template('login.html')
 
 @auth.route('/login', methods=['POST'])
 def login_post():
@@ -18,17 +18,23 @@ def login_post():
     if not user or not check_password_hash(user.password, password):
         flash('Please check your login details and try again.')
         return redirect(url_for('auth.login'))
-    return #TODO add a redirect page here
+
+    login_user(user, remember=True)
+    return redirect(url_for('main.index'))
 
 @auth.route('/signup', methods=['GET'])
 def signup():
-    return 'Signup'
+    return render_template('signup.html')
 
 @auth.route('/signup', methods=['POST'])
 def signup_post():
     username = request.form.get('username')
     password = request.form.get('password')
     theme = request.form.get('theme')
+
+    if request.form.get('password_verify') != password:
+        flash('Passwords do not match')
+        return redirect(url_for('auth.signup'))
 
     if User.query.filter_by(name=username).first():
         flash('User with that username already exists')
@@ -42,4 +48,5 @@ def signup_post():
 
 @auth.route('/logout')
 def logout():
-    return 'Logout'
+    logout_user()
+    return redirect(url_for('main.index'))
