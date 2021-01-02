@@ -144,3 +144,8 @@ li {list-style: none; }
 .btn-sm {
     white-space: nowrap;
 }
+
+.right-side {
+    white-space: nowrap;
+    text-align: right;
+}

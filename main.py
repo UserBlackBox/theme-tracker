@@ -86,3 +86,15 @@ def new_entry_post():
     db.session.add(new_entry)
     db.session.commit()
     return redirect(url_for('main.your'))
+
+@main.route('/settings/', methods=['GET'])
+@login_required
+def settings():
+    return render_template('settings.html')
+
+@main.route('/settings/', methods=['POST'])
+@login_required
+def settings_post():
+    current_user.theme = request.form.get('theme')
+    db.session.commit()
+    return redirect(url_for('main.index'))

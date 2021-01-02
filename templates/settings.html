@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width = device-width, initial-scale = 1">
     <meta charset = "utf-8"/>
-    <title> New Entry </title>
+    <title> Settings </title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
@@ -39,26 +39,14 @@
             </div>
         </div>
     </div>
-    <form method="POST" action="/new/" style="text-align: center">
+    <form method="POST" action="/settings/" style="text-align: center">
         <div class="form-group">
             <div class="control">
-                <label for="entry">Entry</label>
-                <textarea class="form-control" name="entry" style="resize: none" required></textarea>
+                <label for="theme">Change your theme</label>
+                <input type="text" name="theme" value="{{ current_user.theme }}" required>
             </div>
         </div>
-        <div class="form-group">
-            <div class="control">
-                <label for="tags">Tags (separated by spaces)</label>
-                <input class="form-control" type="text" name="tags" autofocus="">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="control">
-                <label for="date" required>Entry Date</label>
-                <input type="date" name="date">
-            </div>
-        </div>
-        <button class="btn btn-primary">Post</button>
+        <button class="btn btn-primary">Update account</button>
     </form>
 </div>
 <footer class = "page-footer">
