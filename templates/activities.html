@@ -40,10 +40,22 @@
             <div class="content-wrapper">
                 <div class  = "left-column">
                     <p><h1>Suggested Activities</h1></p>
+                    <p>Activities by others with similar tags/theme</p>
                     <br>
-                    <p><h3> Date &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Details </h3></p>
-                    <br>
-                    <p><h4> date and details are TBD </h4> </p>
+                    {% if not suggested|length %}
+                        <br>
+                        <p><h4>No new activities yet...</h4></p>
+                    {% else %}
+                        {% for item in suggested %}
+                            <div class="card">
+                                <small>{{ item.user }} - {{ item.date.strftime("%b %d, %Y") }}</small><br>
+                                <p class="card-text">{{ item.entry }}</p>
+                                {% for tag in item.tags.split() %}
+                                    <span class="tag">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>
