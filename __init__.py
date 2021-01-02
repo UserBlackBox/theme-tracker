@@ -6,6 +6,7 @@ db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
+    app.config['SECRET_KEY'] = 'T0ZFQyA-NpBzLWS_fliFkg'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
     db.init_app(app)
     from .auth import auth as auth_blueprint
