@@ -6,11 +6,11 @@ from .models import User
 
 auth = Blueprint('auth', __name__)
 
-@auth.route('/login', methods=['GET'])
+@auth.route('/login/', methods=['GET'])
 def login():
     return render_template('login.html')
 
-@auth.route('/login', methods=['POST'])
+@auth.route('/login/', methods=['POST'])
 def login_post():
     username = request.form.get('username')
     password = request.form.get('password')
@@ -22,11 +22,11 @@ def login_post():
     login_user(user, remember=True)
     return redirect(url_for('main.index'))
 
-@auth.route('/signup', methods=['GET'])
+@auth.route('/signup/', methods=['GET'])
 def signup():
     return render_template('signup.html')
 
-@auth.route('/signup', methods=['POST'])
+@auth.route('/signup/', methods=['POST'])
 def signup_post():
     username = request.form.get('username')
     password = request.form.get('password')
@@ -36,7 +36,7 @@ def signup_post():
         flash('Passwords do not match')
         return redirect(url_for('auth.signup'))
 
-    if len(password)<8:
+    if len(password) < 8:
         flash('Password is too short')
         return redirect(url_for('auth.signup'))
 
@@ -50,7 +50,7 @@ def signup_post():
 
     return redirect(url_for('auth.login'))
 
-@auth.route('/logout')
+@auth.route('/logout/')
 def logout():
     logout_user()
     return redirect(url_for('main.index'))

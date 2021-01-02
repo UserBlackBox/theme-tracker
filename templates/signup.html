@@ -26,32 +26,36 @@
                 </div>
             {% endif %}
         {% endwith %}
-        <form method="POST" action="/signup" style="text-align: center">
-            <div class="field">
+        <form method="POST" action="/signup/" style="text-align: center">
+            <div class="form-group">
                 <div class="control">
-                    <input class="input is-large" type="text" name="username" placeholder="Username" autofocus="">
+                    <label for="username">Username</label>
+                    <input class="form-control" type="text" name="username" placeholder="Username" autofocus="">
                 </div>
             </div>
 
-            <div class="field">
+            <div class="form-group">
                 <div class="control">
-                    <input class="input is-large" type="password" name="password" placeholder="Password">
+                    <label for="password">Password</label>
+                    <input class="form-control" type="password" name="password" placeholder="Password">
                 </div>
             </div>
 
-            <div class="field">
+            <div class="form-group">
                 <div class="control">
-                    <input class="input is-large" type="password" name="password_verify" placeholder="Password Verify">
+                    <label for="password_verify">Password Verification</label>
+                    <input class="form-control" type="password" name="password_verify" placeholder="Password">
                 </div>
             </div>
 
-            <div class="field">
+            <div class="form-group">
                 <div class="control">
-                    <input class="input is-large" type="text" name="theme" placeholder="Your Theme" autofocus="">
+                    <label for="theme">Your theme/resolution</label>
+                    <input class="form-control" type="text" name="theme" placeholder="Your Theme" autofocus="">
                 </div>
             </div>
 
-            <button class="button is-block is-info is-large is-fullwidth">Login</button>
+            <button class="btn btn-primary">Sign Up</button>
         </form>
     </div>
 </div>
