@@ -42,9 +42,20 @@
                 <div class  = "left-column">
                     <p><h1>Your Entries</h1></p>
                     <br>
-                    <p><h3> Date &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Details </h3></p>
-                    <br>
-                    <p><h4> date and details are TBD </h4> </p>
+                    {% if not recent|length %}
+                        <br>
+                        <p><h4>You have no recent entries yet...</h4></p>
+                    {% else %}
+                        {% for item in recent %}
+                            <div class="card">
+                                <small>{{ item.date.strftime("%b %d, %Y") }}</small><br>
+                                <p class="card-text">{{ item.entry }}</p>
+                                {% for tag in item.tags.split() %}
+                                    <span class="tag">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>

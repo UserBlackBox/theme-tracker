@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width = device-width, initial-scale = 1">
     <meta charset = "utf-8"/>
-    <title> Home </title>
+    <title> New Activity </title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
@@ -41,10 +41,22 @@
             <div class="content-wrapper">
                 <div class  = "left-column">
                     <p><h1>New Activity</h1></p>
+                    <p>New activity by other users on the site</p>
                     <br>
-                    <p><h3> User &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Details </h3></p>
-                    <br>
-                    <p><h4> user and details are TBD </h4> </p>
+                    {% if not new|length %}
+                        <br>
+                        <p><h4>No new activities yet...</h4></p>
+                    {% else %}
+                        {% for item in new %}
+                            <div class="card">
+                                <small>{{ item.user }} - {{ item.date.strftime("%b %d, %Y") }}</small><br>
+                                <p class="card-text">{{ item.entry }}</p>
+                                {% for tag in item.tags.split() %}
+                                    <span class="tag">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>
