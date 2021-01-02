@@ -1,7 +1,7 @@
-from flask import Blueprint, render_template, redirect, url_for, request
+from flask import Blueprint, render_template, redirect, url_for, request, abort
 from flask_login import login_required, current_user
 from . import db
-from .models import Entry
+from .models import Entry, User
 import datetime
 
 main = Blueprint('main', __name__)
@@ -37,7 +37,7 @@ def index():
 @main.route('/new-activity/')
 @login_required
 def new():
-    new = Entry.query.filter(Entry.user!=current_user.name).filter_by(public=True).order_by(Entry.id).all()[::-1]
+    new = Entry.query.filter(Entry.user != current_user.name).filter_by(public=True).order_by(Entry.id).all()[::-1]
     return render_template('new.html', new=new)
 
 
@@ -57,14 +57,14 @@ def suggested():
     for i in entries:
         for j in i.tags.split():
             tags.add(j)
-    entries = Entry.query.filter(Entry.user!=current_user.name).order_by(Entry.id).all()[::-1]
+    entries = Entry.query.filter(Entry.user != current_user.name).order_by(Entry.id).all()[::-1]
     suggested = []
     for i in entries:
         for j in i.tags.split():
             if j in tags:
                 suggested.append(i)
                 break
-    return render_template('activities.html', suggested = suggested)
+    return render_template('activities.html', suggested=suggested)
 
 @main.route('/new/', methods=['GET'])
 @login_required
@@ -99,3 +99,12 @@ def settings_post():
     current_user.theme = request.form.get('theme')
     db.session.commit()
     return redirect(url_for('main.index'))
+
+@main.route('/profile/<user>/')
+@login_required
+def profile(user):
+    user = User.query.filter_by(name=user).first()
+    if not user:
+        abort(404)
+    entries = Entry.query.filter_by(user=user.name).filter_by(public=True).order_by(Entry.id).all()[::-1]
+    return render_template('profile.html', user=user.name, entries=entries)

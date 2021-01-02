@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width = device-width, initial-scale = 1">
     <meta charset = "utf-8"/>
-    <title> New Activity </title>
+    <title> Your Entries </title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
@@ -21,7 +21,7 @@
                 <div class="nav-link-wrapper">
                     <a href="{{ url_for('main.index') }}">Home</a>
                 </div>
-                <div class="nav-link-wrapper active-nav-link">
+                <div class="nav-link-wrapper">
                     <a href="{{ url_for('main.new') }}">New Activity</a>
                 </div>
                 <div class="nav-link-wrapper">
@@ -42,16 +42,15 @@
         <div class="content-wrapper">
             <div class="content-wrapper">
                 <div class  = "left-column">
-                    <p><h1>New Activity</h1></p>
-                    <p>New activity by other users on the site</p>
+                    <p><h1>{{ user }}'s Entries</h1></p>
                     <br>
-                    {% if not new|length %}
+                    {% if not entries|length %}
                         <br>
-                        <p><h4>No new activities yet...</h4></p>
+                        <p><h4>This user has no public entries yet...</h4></p>
                     {% else %}
-                        {% for item in new %}
+                        {% for item in entries %}
                             <div class="card">
-                                <small><a href="/profile/{{ item.user }}">{{ item.user }}</a> - {{ item.date.strftime("%b %d, %Y") }}</small><br>
+                                <small>{{ item.date.strftime("%b %d, %Y") }}</small><br>
                                 <p class="card-text">{{ item.entry }}</p>
                                 {% for tag in item.tags.split() %}
                                     <span class="tag">{{ tag }}</span>

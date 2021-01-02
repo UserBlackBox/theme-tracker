@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="right-side">
-            Logged in as {{ current_user.name }}
+            Logged in as <a href="/profile/{{ current_user.name }}/">{{ current_user.name }}</a>
             <div class="name">
                 <a href="/logout" class = "btn-sm btn-success btn-lg" role="button"><i class="fas fa-sign-out-alt"></i> log out</a>
                 <a href="/settings" class="btn-sm btn-success btn-lg" role="button"><i class="fas fa-user-cog"></i></a>

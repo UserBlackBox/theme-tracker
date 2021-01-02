@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="right-side">
-                Logged in as {{ current_user.name }}
+                Logged in as <a href="/profile/{{ current_user.name }}/">{{ current_user.name }}</a>
                 <div class="name">
                     <a href="/logout" class = "btn-sm btn-success btn-lg" role="button"><i class="fas fa-sign-out-alt"></i> log out</a>
                     <a href="/settings" class="btn-sm btn-success btn-lg" role="button"><i class="fas fa-user-cog"></i></a>
@@ -56,7 +56,7 @@
                         {% else %}
                             {% for item in new %}
                                 <div class="card">
-                                    <small>{{ item.user }} - {{ item.date.strftime("%b %d, %Y") }}</small><br>
+                                    <small><a href="/profile/{{ item.user }}">{{ item.user }}</a> - {{ item.date.strftime("%b %d, %Y") }}</small><br>
                                     <p class="card-text">{{ item.entry }}</p>
                                     {% for tag in item.tags.split() %}
                                         <span class="tag">{{ tag }}</span>
@@ -92,7 +92,7 @@
                         {% else %}
                             {% for item in suggested %}
                                 <div class="card">
-                                    <small>{{ item.user }} - {{ item.date.strftime("%b %d, %Y") }}</small><br>
+                                    <small><a href="/profile/{{ item.user }}">{{ item.user }}</a> - {{ item.date.strftime("%b %d, %Y") }}</small><br>
                                     <p class="card-text">{{ item.entry }}</p>
                                     {% for tag in item.tags.split() %}
                                         <span class="tag">{{ tag }}</span>

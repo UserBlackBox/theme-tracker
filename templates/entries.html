@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="right-side">
-                Logged in as {{ current_user.name }}
+                Logged in as <a href="/profile/{{ current_user.name }}/">{{ current_user.name }}</a>
                 <div class="name">
                     <a href="about.html" class = "btn-sm btn-success btn-lg" role="button"><i class="fas fa-sign-out-alt"></i> log out</a>
                     <a href="/settings" class="btn-sm btn-success btn-lg" role="button"><i class="fas fa-user-cog"></i></a>
@@ -49,7 +49,7 @@
                     <br>
                     {% if not recent|length %}
                         <br>
-                        <p><h4>You have no recent entries yet...</h4></p>
+                        <p><h4>You have no entries yet...</h4></p>
                     {% else %}
                         {% for item in recent %}
                             <div class="card">
