@@ -1,5 +1,7 @@
-from . import db
 from flask_login import UserMixin
+
+from . import db
+
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -7,8 +9,10 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(1000))
     theme = db.Column(db.String(1000))
 
+
 class Entry(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user = db.Column(db.Integer, unique=True)
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    user = db.Column(db.String(1000))
     date = db.Column(db.DateTime)
-    entry = db.column(db.String(10000))
+    entry = db.Column(db.String(1000))
+    tags = db.Column(db.String(1000))
