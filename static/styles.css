@@ -44,7 +44,7 @@ body {
 }
 
 .active-nav-link {
-    text-underline: black;
+    text-decoration: underline black;
     text-underline-offset: 5px;
 }
 
@@ -59,7 +59,7 @@ body {
 }
 
 .nav-link-wrapper:hover {
-    text-underline: black;
+    text-decoration: underline black;
     text-underline-offset: 5px;
 }
 
