@@ -42,7 +42,7 @@ def signup_post():
         return redirect(url_for('auth.signup'))
 
     if len(password) < 8:
-        flash('Password is too short')
+        flash('Password should be 8 characters or longer')
         return redirect(url_for('auth.signup'))
 
     if User.query.filter_by(name=username).first():
