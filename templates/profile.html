@@ -48,15 +48,17 @@
                 <div class  = "left-column">
                     <p><h1>{{ user }}'s Entries</h1></p>
                     <p>{{ user }}'s theme: {{ theme }}</p>
-                    <form method="POST" action="/follow/{{ user }}/">
-                        <button class="btn btn-primary">
-                        {% if following %}
-                            Following
-                        {% else %}
-                            Follow this user
-                        {% endif %}
-                        </button>
-                    </form>
+                    {% if current_user.name != user %}
+                        <form method="POST" action="/follow/{{ user }}/">
+                            <button class="btn btn-primary">
+                            {% if following %}
+                                Following
+                            {% else %}
+                                Follow this user
+                            {% endif %}
+                            </button>
+                        </form>
+                    {% endif %}
                     <br>
                     {% if not entries|length %}
                         <br>
