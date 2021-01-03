@@ -16,6 +16,7 @@ def index():
 
 
 @main.route('/dashboard/')
+@login_required
 def dashboard():
     new = Entry.query.filter(Entry.user!=current_user.name).filter_by(public=True).order_by(Entry.id).all()[::-1]
     new = new[:5]

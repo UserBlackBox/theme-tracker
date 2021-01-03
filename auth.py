@@ -21,7 +21,7 @@ def login_post():
         return redirect(url_for('auth.login'))
 
     login_user(user, remember=True)
-    return redirect(url_for('main.index'))
+    return redirect(url_for('main.dashboard'))
 
 @auth.route('/signup/', methods=['GET'])
 def signup():
@@ -58,4 +58,4 @@ def signup_post():
 @auth.route('/logout/')
 def logout():
     logout_user()
-    return redirect(url_for('main.dashboard'))
+    return redirect(url_for('main.index'))
