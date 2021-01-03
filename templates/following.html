@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <meta charset = "utf-8"/>
+    <title> Following </title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <script src="https://kit.fontawesome.com/f5ffdce5b9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link rel="icon" href="{{ url_for('static', filename='2.png') }}">
+</head>
+<body>
+
+<div class="container">
+    <div class="nav-wrapper">
+        <div class="left-side">
+            <div class="nav-link-wrapper">
+                <a href="{{ url_for('main.index') }}"><img src="{{ url_for('static', filename='2.png') }}" height="75px"></a>
+            </div>
+            <div class="nav-link-wrapper">
+                <a href="{{ url_for('main.dashboard') }}">Dashboard</a>
+            </div>
+            <div class="nav-link-wrapper">
+                <a href="{{ url_for('main.new') }}">New Activity</a>
+            </div>
+            <div class="nav-link-wrapper">
+                <a href="{{ url_for('main.your') }}">Your Entries</a>
+            </div>
+            <div class="nav-link-wrapper">
+                <a href="{{ url_for('main.suggested') }}">Your Suggested Activities</a>
+            </div>
+        </div>
+        <div class="right-side">
+            Logged in as <a href="/profile/{{ current_user.name }}/">{{ current_user.name }}</a>
+            <div class="name">
+                <a href="/logout" class = "btn-sm btn-success btn-lg" role="button"><i class="fas fa-sign-out-alt"></i> log out</a>
+                <a href="/settings" class="btn-sm btn-success btn-lg" role="button"><i class="fas fa-user-cog"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <div class="content-wrapper">
+            <div class  = "left-column">
+                <p><h1>New Activity</h1></p>
+                <p>New activity by other users on the site</p>
+                <br>
+                {% if not feed|length %}
+                    <br>
+                    <p><h4>No new activities yet...</h4></p>
+                {% else %}
+                    {% for item in feed %}
+                        <div class="card">
+                            <small><a href="/profile/{{ item.user }}">{{ item.user }}</a> - {{ item.date.strftime("%b %d, %Y") }}</small><br>
+                            <p class="card-text">{{ item.entry }}</p>
+                            {% for tag in item.tags.split() %}
+                                <span class="tag">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<footer class = "page-footer">
+    <div class = "icons">
+        <a href="https://github.com/UserBlackBox/theme-tracker" title="Github">
+            <div class = "image">
+                <img src="{{ url_for('static', filename='github.png') }}" class="current-image" alt="Github" height="32">
+            </div>
+        </a>
+    </div>
+    This project was created for <a href="https://newyearnewhack.devpost.com/">New Year New Hack</a>.
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -32,9 +32,6 @@ def dashboard():
     entries = Entry.query.filter(Entry.user!=current_user.name).filter_by(public=True).order_by(Entry.id).all()[::-1]
     suggested = []
     for i in entries:
-        if i.user in following:
-            suggested.append(i)
-            continue
         for j in i.tags.split():
             if j in tags:
                 suggested.append(i)
@@ -71,9 +68,6 @@ def suggested():
     suggested = []
     following = set(current_user.following.split())
     for i in entries:
-        if i.user in following:
-            suggested.append(i)
-            continue
         for j in i.tags.split():
             if j in tags:
                 suggested.append(i)
@@ -138,3 +132,16 @@ def follow(user):
     current_user.following = following
     db.session.commit()
     return redirect('/profile/'+user)
+
+
+@main.route('/following/')
+@login_required
+def following():
+    entries = Entry.query.filter(Entry.user != current_user.name).order_by(Entry.id).all()[::-1]
+    feed = []
+    following = set(current_user.following.split())
+    for i in entries:
+        if i.user in following:
+            feed.append(i)
+            continue
+    return render_template('following.html', feed=feed)
