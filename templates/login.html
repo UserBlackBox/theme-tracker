@@ -10,12 +10,13 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link rel="icon" href="{{ url_for('static', filename='2.png') }}">
 </head>
 <body>
 <div class="container">
     <div class="nav-wrapper">
         <div class="left-side">
-            <h1>Title Here </h1>
+            <h1><a href="{{ url_for('main.index') }}"><img src="{{ url_for('static', filename='2.png') }}" height="75px"></a> ThemeSpace</h1>
         </div>
     </div>
     <div class="content-wrapper">

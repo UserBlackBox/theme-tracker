@@ -12,6 +12,7 @@
     <script src="https://kit.fontawesome.com/f5ffdce5b9.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link rel="icon" href="{{ url_for('static', filename='2.png') }}">
 </head>
 <body>
 
@@ -19,7 +20,10 @@
     <div class="nav-wrapper">
         <div class="left-side">
             <div class="nav-link-wrapper">
-                <a href="{{ url_for('main.index') }}">Home</a>
+                <a href="{{ url_for('main.index') }}"><img src="{{ url_for('static', filename='2.png') }}" height="75px"></a>
+            </div>
+            <div class="nav-link-wrapper">
+                <a href="{{ url_for('main.dashboard') }}">Dashboard</a>
             </div>
             <div class="nav-link-wrapper">
                 <a href="{{ url_for('main.new') }}">New Activity</a>

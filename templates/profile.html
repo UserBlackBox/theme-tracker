@@ -12,6 +12,7 @@
     <script src="https://kit.fontawesome.com/f5ffdce5b9.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link rel="icon" href="{{ url_for('static', filename='2.png') }}">
 </head>
 <body>
 
@@ -19,7 +20,10 @@
         <div class="nav-wrapper">
             <div class="left-side">
                 <div class="nav-link-wrapper">
-                    <a href="{{ url_for('main.index') }}">Home</a>
+                    <a href="{{ url_for('main.index') }}"><img src="{{ url_for('static', filename='2.png') }}" height="75px"></a>
+                </div>
+                <div class="nav-link-wrapper">
+                    <a href="{{ url_for('main.dashboard') }}">Dashboard</a>
                 </div>
                 <div class="nav-link-wrapper">
                     <a href="{{ url_for('main.new') }}">New Activity</a>
@@ -34,7 +38,7 @@
             <div class="right-side">
                 Logged in as <a href="/profile/{{ current_user.name }}/">{{ current_user.name }}</a>
                 <div class="name">
-                    <a href="about.html" class = "btn-sm btn-success btn-lg" role="button"><i class="fas fa-sign-out-alt"></i> log out</a>
+                    <a href="/logout" class = "btn-sm btn-success btn-lg" role="button"><i class="fas fa-sign-out-alt"></i> log out</a>
                     <a href="/settings" class="btn-sm btn-success btn-lg" role="button"><i class="fas fa-user-cog"></i></a>
                 </div>
             </div>
@@ -43,6 +47,16 @@
             <div class="content-wrapper">
                 <div class  = "left-column">
                     <p><h1>{{ user }}'s Entries</h1></p>
+                    <p>{{ user }}'s theme: {{ theme }}</p>
+                    <form method="POST" action="/follow/{{ user }}/">
+                        <button class="btn btn-primary">
+                        {% if following %}
+                            Following
+                        {% else %}
+                            Follow this user
+                        {% endif %}
+                        </button>
+                    </form>
                     <br>
                     {% if not entries|length %}
                         <br>

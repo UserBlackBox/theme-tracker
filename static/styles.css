@@ -1,9 +1,11 @@
 body {
-  font-family: "Lato", sans-serif;
-  margin: 0px;
+    font-family: "Lato", sans-serif;
+    margin: 0px;
+    background: #ADD8E6;
 }
-.name{
-    padding:5px;
+
+.name {
+    padding: 5px;
     margin: 0px;
     display: block;
     margin-left: auto;
@@ -11,6 +13,7 @@ body {
     width: 75%;
     text-align: center;
 }
+
 .container {
     display: block;
     grid-template-columns: 1fr;
@@ -19,61 +22,61 @@ body {
 }
 
 .nav-wrapper {
-      display: flex;
-      justify-content: space-between;
-      padding: 38px;
+    display: flex;
+    justify-content: space-between;
+    padding: 38px;
 }
 
 .left-side {
-      display: flex;
+    display: flex;
 }
 
 .nav-wrapper > .left-side > div {
-      margin-right: 20px;
-      text-transform: uppercase;
-      font-size: 2rem;
+    margin-right: 20px;
+    text-transform: uppercase;
+    font-size: 2rem;
 }
 
 .nav-link-wrapper {
-  height: 26px;
-  border-bottom: 1px solid transparent;
-  transition: border-bottom 0.5s;
+    height: 26px;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.5s;
 }
 
 .active-nav-link {
-  border-bottom: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 .active-nav-link a {
-  color: black !important;
+    color: black !important;
 }
 
 .nav-link-wrapper a {
-  color: #8a8a8a;
-  text-decoration: none;
-  transition: color 0.5s;
+    color: #8a8a8a;
+    text-decoration: none;
+    transition: color 0.5s;
 }
 
 .nav-link-wrapper:hover {
-  border-bottom: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 .nav-link-wrapper a:hover {
-  color: black;
+    color: black;
 }
 
 .three-column-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     height: 100%;
 }
 
-.two-column-wrapper{
+.two-column-wrapper {
     display: grid;
     grid-template-columns:1fr 1fr;
 }
 
-.page-footer{
+.page-footer {
     padding-top: 50px;
     text-align: center;
     position: relative;
@@ -88,7 +91,10 @@ pre code {
     display: block;
     padding: 10px;
 }
-li {list-style: none; }
+
+li {
+    list-style: none;
+}
 
 .notification {
     background: #bf000d;
@@ -110,12 +116,14 @@ li {list-style: none; }
     margin: 5px;
     height: 100%;
 }
+
 .left-column {
     background: #e1e1e1;
     padding: 5px;
     margin: 5px;
     height: 100%;
 }
+
 .right-column {
     background: #e1e1e1;
     padding: 5px;

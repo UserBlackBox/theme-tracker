@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from . import db
 from .models import Entry, User
 import datetime
+from sqlalchemy import or_
 
 main = Blueprint('main', __name__)
 
@@ -11,7 +12,11 @@ main = Blueprint('main', __name__)
 def index():
     if not current_user.is_authenticated:
         return render_template('index.html')
+    return render_template('index-loggedin.html')
 
+
+@main.route('/dashboard/')
+def dashboard():
     new = Entry.query.filter(Entry.user!=current_user.name).filter_by(public=True).order_by(Entry.id).all()[::-1]
     new = new[:5]
     recent = Entry.query.filter_by(user=current_user.name).order_by(Entry.id).all()[::-1]
@@ -22,9 +27,13 @@ def index():
     for i in entries:
         for j in i.tags.split():
             tags.add(j)
+    following = set(current_user.following.split())
     entries = Entry.query.filter(Entry.user!=current_user.name).filter_by(public=True).order_by(Entry.id).all()[::-1]
     suggested = []
     for i in entries:
+        if i.user in following:
+            suggested.append(i)
+            continue
         for j in i.tags.split():
             if j in tags:
                 suggested.append(i)
@@ -59,7 +68,11 @@ def suggested():
             tags.add(j)
     entries = Entry.query.filter(Entry.user != current_user.name).order_by(Entry.id).all()[::-1]
     suggested = []
+    following = set(current_user.following.split())
     for i in entries:
+        if i.user in following:
+            suggested.append(i)
+            continue
         for j in i.tags.split():
             if j in tags:
                 suggested.append(i)
@@ -107,4 +120,20 @@ def profile(user):
     if not user:
         abort(404)
     entries = Entry.query.filter_by(user=user.name).filter_by(public=True).order_by(Entry.id).all()[::-1]
-    return render_template('profile.html', user=user.name, entries=entries)
+    following = set(current_user.following.split())
+    return render_template('profile.html', user=user.name, entries=entries, following=(user.name in following), theme=user.theme)
+
+@main.route('/follow/<user>/', methods=['POST'])
+@login_required
+def follow(user):
+    if user == current_user.name:
+        return redirect('/profile/'+user)
+    following = set(current_user.following.split())
+    if user in following:
+        following.remove(user)
+    else:
+        following.add(user)
+    following = ' '.join(list(following))
+    current_user.following = following
+    db.session.commit()
+    return redirect('/profile/'+user)

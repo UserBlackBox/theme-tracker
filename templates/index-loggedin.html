@@ -20,11 +20,12 @@
                 <h1><a href="{{ url_for('main.index') }}"><img src="{{ url_for('static', filename='1.png') }}" height="100px"></a> ThemeSpace</h1>
             </div>
             <div class="right-side">
-                Not Logged In.
-                <div class="name" style="width: 100%">
-                    <a href="/login" class = "btn-sm btn-success btn-lg" role="button">log in</a>
-                    <a href="/signup" class = "btn-sm btn-success btn-lg" role="button">sign up</a>
+                Logged in as <a href="/profile/{{ current_user.name }}/">{{ current_user.name }}</a>
+                <div class="name">
+                    <a href="/logout" class = "btn-sm btn-success btn-lg" role="button"><i class="fas fa-sign-out-alt"></i> log out</a>
+                    <a href="/settings" class="btn-sm btn-success btn-lg" role="button"><i class="fas fa-user-cog"></i></a>
                 </div>
+                <a href="{{ url_for('main.dashboard') }}">Back to webapp</a>
             </div>
         </div>
         <div class="content-wrapper">
