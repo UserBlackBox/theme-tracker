@@ -60,11 +60,11 @@ def your():
 def suggested():
     tags = set()
     tags.add(current_user.theme.lower())
-    entries = Entry.query.filter_by(user=current_user.name).filter_by(public=True).order_by(Entry.id).all()[::-1]
+    entries = Entry.query.filter_by(user=current_user.name).order_by(Entry.id).all()[::-1]
     for i in entries:
         for j in i.tags.split():
             tags.add(j)
-    entries = Entry.query.filter(Entry.user != current_user.name).order_by(Entry.id).all()[::-1]
+    entries = Entry.query.filter(Entry.user != current_user.name).filter_by(public=True).order_by(Entry.id).all()[::-1]
     suggested = []
     following = set(current_user.following.split())
     for i in entries:
